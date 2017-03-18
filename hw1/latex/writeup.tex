@@ -48,7 +48,40 @@ However, please note that if you do not mention the reference even though you ha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Composing Filters [15 points]}
+\section{Composing Filters [5 points]}
+
+Yes, applying G followed by E is equivalent to applying E and then G, because they are both linear kernels and can be applied by convolution. Convolution is commutative and associative, so the order is irrelevant.
+If M is used however, the result will not be the same. M is a median filter, so it is non-linear and thus cannot be applied using convolution. The result will vary depeding if E or M is applied first.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Q2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Decomposing a Steerable Filter [10 pts]}
+
+A 2D gaussian filter is symmetrical and thus can be separated into two 1D gaussian filters:
+\begin{equation}
+    G(x,y) = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2+y^2}{2\sigma^2})
+    = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2}{2\sigma^2}) * \frac{1}{2\pi\sigma^2} * exp(-\frac{y^2}{2\sigma^2})
+    = G\textsubscript{x}(x) * G\textsubscript{y}(y)
+\end{equation}
+This separation has a great impact on comutation speed. Applying a 2D filter as is takes \mathcal{O}(n^2) time, while it takes only \mathcal{O}(2*n) time if the filter is separated.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Q3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hough Transform Line Parameterization [5 pts]}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Q4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Impulse Response [5 pts]}
+
+src: http://math.stackexchange.com/questions/1015498/convolution-with-delta-function
+
+
+
+
 
 Fill your answers.
 
