@@ -94,7 +94,7 @@ end
 
 \begin{figure}[!h]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{assets/ht.PNG}
+        \includegraphics[width=1.0\textwidth]{assets/ht.PNG}
         \caption{Effect of changing (x,y) values to resulting sinusoid}
         \label{fig:hough_transform}
     \end{center}
@@ -106,16 +106,46 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Impulse Response [5 pts]}
 The Dirac delta function is a function that is 0 everywhere except in a very small part in the middle, there is a spike so big that the area under this spike is exactly 1.
-The Dirac delta function is the identity value of the convolution operation.
+The Dirac delta function is the identity value of the convolution operation, which means convolution with the dirac delta functions results in the original function, just like multiplying by 1 or adding 0 for real numbers. It does not change the original.
 
+As a convolution kernel, the dirac delta function is an NxN matrix filled with 0 everywhere except a 1 in the middle. So it is clear that the value in the middle will be weighted 100\%, whereas every other value in an iteration has a weight of 0\% which means the value just stays the same.
 
 
 src: http://math.stackexchange.com/questions/1015498/convolution-with-delta-function
 
-
-
-
 src: https://de.wikipedia.org/wiki/Faltungsmatrix
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Q4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hough Transform for Line Detection [65 pts]}
+\subsection{Edge Detection [20 pts]}
+Non maximal supprssion is implemented by iterating through every pixel in the magnitude image and comparing the current pixel to the pixel above and below (left and right respectively). If the current pixel is not the biggest of the three, the pixel is set to 0 to suppress it and make the edge thinner and more accurate.
+
+\begin{lstlisting}
+% non maximal suppression
+[width, height] = size(Iconv);
+for x = 1:width
+    for y = 1:height
+        p = Im(x, y); % current pixel
+        if (x > 1 && x < width) %a void index out of bounds
+            if (p < Im(x-1, y) || p < Im(x+1, y))
+                Im(x, y) = 0;
+            end
+        end
+        if (y > 1 && y < height) %a void index out of bounds
+            if (p < Im(x, y-1) || p < Im(x, y+1))
+                Im(x, y) = 0;
+            end
+        end
+    end
+end
+\end{lstlisting}
+
+
+
+
 
 
 
@@ -151,6 +181,10 @@ We highly recommend you to use \verb|\newcommand| to simplify your equation in \
 
 You can cite your reference by using \verb|\cite{reference_name}|.
 For example, cite R.Szeliski's Compute Vision book \cite{szeliski2010computer} like this.
+
+
+src: 
+https://en.wikipedia.org/wiki/Canny_edge_detector
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

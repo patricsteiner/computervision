@@ -4,7 +4,7 @@ function Iconv = myImageFilter(I, S)
 [IWidth, IHeight] = size(I);
 [SWidth, SHeight] = size(S);
 SCenter = floor(SWidth/2+1);
-Iconv = zeros(IWidth, IHeight);
+Iconv = im2double(zeros(IWidth, IHeight));
 
 for x = 1:IWidth
     for y = 1:IHeight
@@ -26,25 +26,12 @@ for x = 1:IWidth
                 while row > IHeight
                     row = row - 1;
                 end
-                %can remove this:
-                if col < 1 || col > IWidth || row < 1 || row > IHeight
+                %if col < 1 || col > IWidth || row < 1 || row > IHeight
                     
-                else
-                    Iconv(x, y) = I(col, row) * S(i, j);
-                end
+                %else
+                    Iconv(x, y) = Iconv(x,y) + I(col, row) * S(i, j);
+                %end
             end
         end
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
