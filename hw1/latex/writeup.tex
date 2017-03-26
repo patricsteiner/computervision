@@ -26,16 +26,12 @@
 
 \begin{document}
 
-% TODO : Fill your personal information here
 \begin{center}
     {\bf\large Homework 1} \\
     {\bf\large M1522.001000 Computer Vision (2017 Spring)} \\
     2017-81517 Patric Steiner \\
-    % Due: September 22 Thursday 11:59PM \\
     Date: March 9 Thursday
 \end{center}
-
-Fill anything you want to say about your homework.
 
 \textbf{[Important] Reference to work of others.} You can refer to another person's key idea in writing the source code, but in this case you must leave a reference in the writeup. If you take someone else's idea and leave a reference, you will only get 0 points in the "Implementation" part of that problem in the scoring process. 
 However, please note that if you do not mention the reference even though you have brought in someone else's idea, you will get 0 points for all the problems in that homework.
@@ -43,8 +39,6 @@ However, please note that if you do not mention the reference even though you ha
 
 
 
-
-% TODO : Fill your answers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,7 +52,7 @@ If M is used however, the result will not be the same. M is a median filter, so 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decomposing a Steerable Filter [10 pts]}
 
-A 2D gaussian filter is symmetrical and thus can be separated into two 1D gaussian filters:
+A 2D gaussian filter is symmetrical and thus can be separated into two 1D gaussian (horizontal and vertial) filters:
 \begin{equation}
     G(x,y) = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2+y^2}{2\sigma^2})
     = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2}{2\sigma^2}) * \frac{1}{2\pi\sigma^2} * exp(-\frac{y^2}{2\sigma^2})
@@ -71,15 +65,56 @@ This separation has a great impact on comutation speed. Applying a 2D filter as 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hough Transform Line Parameterization [5 pts]}
 
+The following Matlab script shows how image points (x,y) result in a sinusoid in (\roh, \theta) Hough space. The first figure shows the effect on the sinusoid of increasing x value, the second shows the effect of increasing y value.
+We can see that in both cases, the x and y value have direct impact on the amplitude, which is increased as x or y grow.
+We can see that the period is always the same, it does not change with the image point (x,y).
+
+\begin{lstlisting}
+t = [-5:.1:5]; % theta
+
+hold off;
+y = 1; % show effects of increasing x value
+for x = 1:5:50
+    p = x*sin(t)-y*cos(t);
+    plot(t, p);
+    hold on;
+end
+
+
+hold off;
+x=1; % show effects of increasing y value
+for y = 1:5:50
+    p = x*sin(t)-y*cos(t);
+    plot(t, p);
+    hold on;
+end
+\end{lstlisting}
+
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{assets/ht.png}
+        \caption{Effect of changing (x,y) values to resulting sinusoid}
+        \label{fig:hough_transform}
+    \end{center}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Impulse Response [5 pts]}
+The Dirac delta function is a function that is 0 everywhere except in a very small part in the middle, there is a spike so big that the area under this spike is exactly 1.
+The Dirac delta function is the identity value of the convolution operation.
+
+
 
 src: http://math.stackexchange.com/questions/1015498/convolution-with-delta-function
 
 
+
+
+src: https://de.wikipedia.org/wiki/Faltungsmatrix
 
 
 

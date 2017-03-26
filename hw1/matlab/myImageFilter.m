@@ -1,5 +1,5 @@
 function Iconv = myImageFilter(I, S)
-% convolves grayscale iamge I with kernel S
+% convolves grayscale image I with kernel S
 
 [IWidth, IHeight] = size(I);
 [SWidth, SHeight] = size(S);
@@ -26,7 +26,12 @@ for x = 1:IWidth
                 while row > IHeight
                     row = row - 1;
                 end
-                Iconv(x, y) = I(col, row) * S(i, j);
+                %can remove this:
+                if col < 1 || col > IWidth || row < 1 || row > IHeight
+                    
+                else
+                    Iconv(x, y) = I(col, row) * S(i, j);
+                end
             end
         end
     end
