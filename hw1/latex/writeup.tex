@@ -11,7 +11,8 @@
 \usepackage{bm}
 \usepackage[parfill]{parskip}
 \usepackage{subfigure}
-% TODO : Fil your personal package here if needed
+\usepackage{fixltx2e}
+\usepackage{listings}
 
 %%%% new version of enumerate with less spacing
 \newenvironment{enum}{
@@ -52,20 +53,20 @@ If M is used however, the result will not be the same. M is a median filter, so 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decomposing a Steerable Filter [10 pts]}
 
-A 2D gaussian filter is symmetrical and thus can be separated into two 1D gaussian (horizontal and vertial) filters:
+A 2D gaussian filter is symmetrical and thus can be separated into two 1D gaussian (horizontal and vertical) filters:
 \begin{equation}
-    G(x,y) = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2+y^2}{2\sigma^2})
-    = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2}{2\sigma^2}) * \frac{1}{2\pi\sigma^2} * exp(-\frac{y^2}{2\sigma^2})
+    G(x,y) = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2+y^2}{2\sigma^2}) \\
+    = \frac{1}{2\pi\sigma^2} exp(-\frac{x^2}{2\sigma^2}) * \frac{1}{2\pi\sigma^2} exp(-\frac{y^2}{2\sigma^2}) \\
     = G\textsubscript{x}(x) * G\textsubscript{y}(y)
 \end{equation}
-This separation has a great impact on comutation speed. Applying a 2D filter as is takes \mathcal{O}(n^2) time, while it takes only \mathcal{O}(2*n) time if the filter is separated.
+This separation has a great impact on computation speed. Applying a 2D filter as is takes $\mathcal{O}(n^2)$ time, while it takes only $\mathcal{O}(2*n)$ time if the filter is separated.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hough Transform Line Parameterization [5 pts]}
 
-The following Matlab script shows how image points (x,y) result in a sinusoid in (\roh, \theta) Hough space. The first figure shows the effect on the sinusoid of increasing x value, the second shows the effect of increasing y value.
+The following Matlab script shows how image points (x,y) result in a sinusoid in (roh, theta) Hough space. The first figure shows the effect on the sinusoid of increasing x value, the second shows the effect of increasing y value.
 We can see that in both cases, the x and y value have direct impact on the amplitude, which is increased as x or y grow.
 We can see that the period is always the same, it does not change with the image point (x,y).
 
@@ -93,7 +94,7 @@ end
 
 \begin{figure}[!h]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{assets/ht.png}
+        \includegraphics[width=0.7\textwidth]{assets/ht.PNG}
         \caption{Effect of changing (x,y) values to resulting sinusoid}
         \label{fig:hough_transform}
     \end{center}
