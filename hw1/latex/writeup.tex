@@ -13,6 +13,7 @@
 \usepackage{subfigure}
 \usepackage{fixltx2e}
 \usepackage{listings}
+\usepackage{url}
 
 %%%% new version of enumerate with less spacing
 \newenvironment{enum}{
@@ -109,26 +110,21 @@ The Dirac delta function is the identity value of the convolution operation, whi
 As a convolution kernel, the dirac delta function is an NxN matrix filled with 0 everywhere except a 1 in the middle. So it is clear that the value in the middle will be weighted 100\%, whereas every other value in an iteration has a weight of 0\% which means the value just stays the same.
 
 
-\cite{convolution}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Generalized Hough Transform [10 pts]}
 
-A parabola can be seen as a "tilted circle". The formula to be used would be y={\frac {x^{2}}{4r\sin {\theta }}}.
+A parabola can be seen as a "tilted circle". The formula to be used would be $y={\frac {x^{2}}{4r\sin {\theta }}}$.
 So we need one more parameter for the angle of the circle.
 
 \begin{figure}[!h]
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{assets/parabola.png}
+        \includegraphics[width=0.3\textwidth]{assets/parabola.png}
         \caption{Parabola as a tilted circle in a cone}
         \label{fig:parabola}
     \end{center}
 \end{figure}
-
-\cite{parabola}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,32 +136,12 @@ So we need one more parameter for the angle of the circle.
 \subsection{Edge Detection [20 pts]}
 Non maximal supprssion is implemented by iterating through every pixel in the magnitude image and comparing the current pixel to the pixel above and below (left and right respectively). If the current pixel is not the biggest of the three, the pixel is set to 0 to suppress it and make the edge thinner and more accurate.
 
-\begin{lstlisting}
-% non maximal suppression
-[width, height] = size(Iconv);
-for x = 1:width
-    for y = 1:height
-        p = Im(x, y); % current pixel
-        if (x > 1 && x < width) %a void index out of bounds
-            if (p < Im(x-1, y) || p < Im(x+1, y))
-                Im(x, y) = 0;
-            end
-        end
-        if (y > 1 && y < height) %a void index out of bounds
-            if (p < Im(x, y-1) || p < Im(x, y+1))
-                Im(x, y) = 0;
-            end
-        end
-    end
-end
-\end{lstlisting}
-
 
 \subsection{The Hough Transform [15 pts]}
 The parameters used to calcuate these images:
 
 sigma     = 7
-threshold = 0.3;
+threshold = 0.3
 rhoRes    = 1
 thetaRes  = 1
 
@@ -174,8 +150,13 @@ thetaRes  = 1
         \includegraphics[width=.5\textwidth]{assets/im.jpg}
         \caption{Grayscale image}
         \label{fig:grayscale}
-        \includegraphics[width=.5\textwidth]{assets/h.jpg}
-        \caption{Hough transformation of image}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{assets/h.jpg}
+        \caption{Hough transformation of image (rotated by 90 degree)}
         \label{fig:hough}
     \end{center}
 \end{figure}
@@ -183,7 +164,7 @@ thetaRes  = 1
 
 
 \subsection{Finding Lines [10 pts]}
-Non maximal supprssion is implemented by iterating through every pixel in the magnitude image and comparing the current pixel to the pixel above and below (left and right respectively). If the current pixel is not the biggest of the three, the pixel is set to 0 to suppress it and make the edge thinner and more accurate.
+Non maximal suppression is implemented by iterating through every pixel in the magnitude image and comparing the current pixel to the pixel above and below (left and right respectively). If the current pixel is not the biggest of the three, the pixel is set to 0 to suppress it and make the edge thinner and more accurate.
 
 \begin{lstlisting}
 % non maximal suppression
@@ -203,14 +184,19 @@ for x = 1:width
         end
     end
 end
+
 \end{lstlisting}
 
 rroh and rtheta are needed to calculate the correct position of the lines.
 
 
+Unfortunately I did not manage to convert the results of this functions to start and end coordinates of lines, so I was not able to print the lines in the pictures.
+
+
 \section{Some materials for HW2 [5 points]}
 
 % Bibtex
+\nocite{*}
 \bibliography{writeup}
 \bibliographystyle{plain}
 
