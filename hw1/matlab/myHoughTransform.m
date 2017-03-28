@@ -6,16 +6,19 @@ function H = myHoughTransform(Im, Imin, rrho, rtheta)
 
 [width, height] = size(Im);
 
-H = zeros(rrho, rtheta);
+rho_max = round(sqrt(width^2 + height^2)); % max possible value for rho is the full diagonal of image, used for scaling
+
+H = zeros(rho_max*2, 360); % *2 because it can also be negative, 360° so we have a full cycle
 
 % iterate through all pixels of given image
 for x = 1:width
     for y = 1:height
         if (Im(x, y) >= Imin) % only consider values above threshold
-            for theta = 1:rtheta
+            for theta = 1:rtheta:360
                 rho = round(y * cosd(theta) - x * sind(theta));
-                if (rho > 0 && rho < rrho)
-                    H(rho, theta) = H(rho, theta) + .3;
+                rho_pos = rho + rho_max;
+                if (rho_pos > 0 && rho_pos < 2*rho_max)
+                    H(rho_pos, theta) = H(rho_pos, theta) + .1;
                 end
             end
         end

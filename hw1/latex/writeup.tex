@@ -38,8 +38,6 @@
 However, please note that if you do not mention the reference even though you have brought in someone else's idea, you will get 0 points for all the problems in that homework.
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -94,7 +92,7 @@ end
 
 \begin{figure}[!h]
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{assets/ht.PNG}
+        \includegraphics[width=1.0\textwidth]{assets/ht.png}
         \caption{Effect of changing (x,y) values to resulting sinusoid}
         \label{fig:hough_transform}
     \end{center}
@@ -111,15 +109,34 @@ The Dirac delta function is the identity value of the convolution operation, whi
 As a convolution kernel, the dirac delta function is an NxN matrix filled with 0 everywhere except a 1 in the middle. So it is clear that the value in the middle will be weighted 100\%, whereas every other value in an iteration has a weight of 0\% which means the value just stays the same.
 
 
-src: http://math.stackexchange.com/questions/1015498/convolution-with-delta-function
-
-src: https://de.wikipedia.org/wiki/Faltungsmatrix
+\cite{convolution}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Generalized Hough Transform [10 pts]}
+
+A parabola can be seen as a "tilted circle". The formula to be used would be y={\frac {x^{2}}{4r\sin {\theta }}}.
+So we need one more parameter for the angle of the circle.
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{assets/parabola.png}
+        \caption{Parabola as a tilted circle in a cone}
+        \label{fig:parabola}
+    \end{center}
+\end{figure}
+
+\cite{parabola}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Q6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hough Transform for Line Detection [65 pts]}
+
+
 \subsection{Edge Detection [20 pts]}
 Non maximal supprssion is implemented by iterating through every pixel in the magnitude image and comparing the current pixel to the pixel above and below (left and right respectively). If the current pixel is not the biggest of the three, the pixel is set to 0 to suppress it and make the edge thinner and more accurate.
 
@@ -144,69 +161,54 @@ end
 \end{lstlisting}
 
 
+\subsection{The Hough Transform [15 pts]}
+The parameters used to calcuate these images:
 
-
-
-
-
-Fill your answers.
-
-You can insert your figure by using \verb|\begin{figure}|.
-You can refer your figure by using \verb|\ref{fig:example_figure}|.
+sigma     = 7
+threshold = 0.3;
+rhoRes    = 1
+thetaRes  = 1
 
 \begin{figure}[!h]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{assets/fig1.png}
-        \caption{Example Figure}
-        \label{fig:example_figure}
+        \includegraphics[width=.5\textwidth]{assets/im.jpg}
+        \caption{Grayscale image}
+        \label{fig:grayscale}
+        \includegraphics[width=.5\textwidth]{assets/h.jpg}
+        \caption{Hough transformation of image}
+        \label{fig:hough}
     \end{center}
 \end{figure}
 
-You can enumerate subquestions like this.
-
-\begin{enumerate}
-    \item Enumerate item 1.
-    \item Enumerate item 2.
-    \item Enumerate item 3.
-\end{enumerate}
-
-You can write your equations by using \verb|\begin{aligned}|.
-We highly recommend you to use \verb|\newcommand| to simplify your equation in \LaTeX.
-
-\begin{align}
-    \Ab &= 12 \\
-    \alpha_{12}^{35} &= 1234 \\
-    \beta_1 &= 10
-\end{align}
-
-You can cite your reference by using \verb|\cite{reference_name}|.
-For example, cite R.Szeliski's Compute Vision book \cite{szeliski2010computer} like this.
 
 
-src: 
-https://en.wikipedia.org/wiki/Canny_edge_detector
+\subsection{Finding Lines [10 pts]}
+Non maximal supprssion is implemented by iterating through every pixel in the magnitude image and comparing the current pixel to the pixel above and below (left and right respectively). If the current pixel is not the biggest of the three, the pixel is set to 0 to suppress it and make the edge thinner and more accurate.
+
+\begin{lstlisting}
+% non maximal suppression
+[width, height] = size(Iconv);
+for x = 1:width
+    for y = 1:height
+        p = Im(x, y); % current pixel
+        if (x > 1 && x < width) %a void index out of bounds
+            if (p < Im(x-1, y) || p < Im(x+1, y))
+                Im(x, y) = 0;
+            end
+        end
+        if (y > 1 && y < height) %a void index out of bounds
+            if (p < Im(x, y-1) || p < Im(x, y+1))
+                Im(x, y) = 0;
+            end
+        end
+    end
+end
+\end{lstlisting}
+
+rroh and rtheta are needed to calculate the correct position of the lines.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Q2
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Some materials for HW2 [5 points]}
-
-\begin{table}[!h]
-\centering
-\begin{tabular}{c|l|l|l|l}
-Step & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Variable\\ eliminated\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Factors\\ used\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Variables\\ involved\end{tabular}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}New\\ factor\end{tabular}} \\ \hline
-1    &                                                                                    &                                                                             &                                                                                   &                                                                          \\
-2    &                                                                                    &                                                                             &                                                                                   &                                                                          \\
-3    &                                                                                    &                                                                             &                                                                                   &                                                                          \\
-4    &                                                                                    &                                                                             &                                                                                   &                                                                          \\
-5    &                                                                                    &                                                                             &                                                                                   &                                                                          \\
-6    &                                                                                    &                                                                             &                                                                                   &                                                                          \\
-7    &                                                                                    &                                                                             &                                                                                   &                                                                         
-\end{tabular}
-\caption{A run of variable elimination for the query $P(J)$}
-\label{table:VE}
-\end{table}
 
 % Bibtex
 \bibliography{writeup}

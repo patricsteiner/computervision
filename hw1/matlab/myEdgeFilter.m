@@ -4,7 +4,7 @@ function [Im, Io, Ix, Iy] = myEdgeFilter(Iconv, sigma)
 % Io = edge orientation image
 % Ix and Iy: edge filter responses
 
-S = fspecial('gaussian', 5, sigma); % convolution kernel
+S = fspecial('gaussian', 7, sigma); % convolution kernel
 Iconv = myImageFilter(Iconv, S); % Image after convolution
 
 SobelX = [-1 0 1; -2 0 2; -1 0 1];
