@@ -20,12 +20,12 @@ Io = atan(abs(Ix)/abs(Iy));
 for x = 1:width
     for y = 1:height
         p = Im(x, y); % current pixel
-        if (x > 1 && x < width) %a void index out of bounds
+        if (x > 1 && x < width) % avoid index out of bounds
             if (p < Im(x-1, y) || p < Im(x+1, y))
                 Im(x, y) = 0;
             end
         end
-        if (y > 1 && y < height) %a void index out of bounds
+        if (y > 1 && y < height) % avoid index out of bounds
             if (p < Im(x, y-1) || p < Im(x, y+1))
                 Im(x, y) = 0;
             end

@@ -1,0 +1,22 @@
+function [lv] = findLight(img, cx, cy, r)
+% finds the direction and intensity of the lightsource in an image of a
+% sphere (assumed there is a single point light source in the scene).
+% lv: vector pointing in the direction of the lightsource. length is
+% proportional to the intensity of the lightsource.
+
+r = 1
+img1 = double(imread(sprintf('%s/sphere0.pgm', datapath)))/255;
+
+[brightestPixel, index] = max(img(:));
+[x, y] = find(img == brightestPixel);
+
+z = sqrt(r^2 - (x - cx)^2 - (y - cy)^2);
+
+center = [cx, cy, 0];
+brightestSurfacePoint = [x, y, z];
+
+lv = brightestSurfacePoint - center;
+lv = norm(lv) * brightestPixel;
+
+end
+

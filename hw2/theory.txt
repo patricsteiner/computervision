@@ -1,0 +1,57 @@
+# Question 1
+
+A lambertian surface looks the same from every viewpoint. So if there are 2 light sources, we can get the image intensity from our viewpoint by just adding the two sources.
+
+I = n*s1 + n*s2 = n*(s1 + s2)
+
+let s3 = s1 + s2
+
+--> I = n*s3
+
+If the intensity of s1 and s2 is different, we need to include it in the calculation.
+
+I = n*k1s1 + n*k2s2 = n*(k1s1 + k2s2)
+
+Direction and intensiry of "effective" source s3 = k1s1 + k2s2
+
+
+
+# Question 2
+
+
+
+
+# Question 3
+
+Since the directions of the three light sources and the intensity of the image pixels are given, we can calculate the reflectance map for each image. The three reflectance maps can then be laid on top of each other and we look for intersections, from which we can calculate the direction of the normal.
+
+In lambertian case, Image intensity is calculated by the following formula:
+
+I = pn*s 
+
+where p is albedo, n the normal and s the light source vector.
+
+Now there are 3 light sources and 3 image intensities, so we have 3 equations:
+
+I1 = pn*s1
+I2 = pn*s2
+I3 = pn*s3
+
+We can write these equations as a matrix:
+
+|I1|   |s1^T|
+|I2| = |s2^T| pn
+|I3|   |s3^T|
+
+ I       S     ñ 
+
+We now have a squared (3x3) matrix S and can calculate the inverse of it and then rearrange the equation to get the normals and albedos:
+
+ñ = S^1*I
+p = |ñ|
+n = ñ/|n| = ñ/p
+
+This is done at for each pixel.
+
+If we have more than 3 images, we can obviously get more accurate results by applying the same method.
+
