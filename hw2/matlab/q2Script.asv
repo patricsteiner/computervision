@@ -1,5 +1,5 @@
 circleThreshold = .5; %set this value
-darkThreshold   = .25; %set this value
+darkThreshold   = 0; %set this value
 
 %path to sphere and object images
 datapath = '../data/q2';
@@ -33,8 +33,8 @@ img3 = double(imread(sprintf('%s/object3.pgm', datapath)))/255;
  Y = 1:step:size(img1,1);
  U = reshape(normals(1,:), size(img1));
  V = reshape(normals(2,:), size(img1));
- U = U(1:step:end, 1:step:end);
- V = V(1:step:end, 1:step:end);
+ U = U(1:10:end, 1:10:end);
+ V = V(1:10:end, 1:10:end);
  
  figure(1);
  hold off;
