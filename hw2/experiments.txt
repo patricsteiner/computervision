@@ -5,3 +5,6 @@ The difference between the maxImage and the minImage seems to be the exact origi
 In the globalImg (2*minImg) we can clearly see the difference in the reflectance property of the different objects in the pictures. Objects that appear bright have a high reflectance, objects that appear dark have a low reflectance.
 We can observe that convex objects show more global illumination effects than concave objects. We can see this for example in the scene2 directImage, where the top of the border, which is convex, is a lot brighter than the inside of the border, which is concave.
 
+
+# Part 3
+The results of the photometric stereo are obviously different when the direct illumination images are used instead of the normal images, because they are different images and thus also have different normals.

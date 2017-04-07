@@ -81,9 +81,9 @@ top = (topLeftMost + topRightMost) / 2;
 bottom = (bottomLeftMost + bottomRightMost) / 2;
 center = (top + bottom) / 2;
 
-cx = round(center(1));
-cy = round(center(2));
-r = round(center(2) - top(2));
+cx = center(1);
+cy = center(2);
+r = center(2) - top(2);
 
 end
 

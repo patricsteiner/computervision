@@ -18,6 +18,20 @@ Direction and intensiry of "effective" source s3 = k1s1 + k2s2
 
 # Question 2
 
+A sphere in 3D space with center (a, b, c) and radius R is made of all points (u, v, w) that fullfill this equation:
+
+(u - a)^2 + (v - b)^2 + (w - c)^2 = R^2
+
+a and b are given and we can choose c freely, which is the z coordinate of the sphere. Let's set c to 0.
+
+(u - a)^2 + (v - b)^2 + w^2 = R^2
+
+The goal is to find a vector from the center of the sphere to any point (u, v) on the surface, so that means u and v are given as well, as is the radius R. So to find the missing component of the vector, we must rearrange the equation and find w:
+
+w = sqrt(R^2 - (u - a)^2 - (v - b)^2)
+
+So now we know all the coordinates of the surface point (u, v, w) and we also know the center of the sphere (a, b, c).
+To get the vector we just subtract (a, b, c) from (u, v, w).
 
 
 

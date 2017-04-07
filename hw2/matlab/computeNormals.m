@@ -5,7 +5,7 @@ function [normals, albedo] = computeNormals(img1, img2, img3, lv1, lv2, lv3, thr
 % lambertian, so there is no specular component.
 
 [width, height] = size(img1);
-lightSources = [lv1; lv2; lv3];
+lightSources = [lv1'; lv2'; lv3'];
 
 normals = zeros(3, width * height);
 albedo = zeros(width, height);
@@ -19,7 +19,7 @@ for y = 1:height
             n = lightSources \ intensities; % Inverse of lightSources * intensities
             albedo(x, y) = norm(n);
             normal = n / albedo(x, y);
-            normals(:, (y-1) * height + x) = normal; % add normal to
+            normals(:, (y-1) * width + x) = normal;
         end
     end
 end
