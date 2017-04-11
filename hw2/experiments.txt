@@ -1,10 +1,13 @@
 # Part 1
-
-The difference between the maxImage and the minImage seems to be the exact original image, before the checkersboard overlay.
+The difference between the maxImage and the minImage seems to be the exact original image, before the checkersboard overlay (or at least very similar).
 
 In the globalImg (2*minImg) we can clearly see the difference in the reflectance property of the different objects in the pictures. Objects that appear bright have a high reflectance, objects that appear dark have a low reflectance.
 We can observe that convex objects show more global illumination effects than concave objects. We can see this for example in the scene2 directImage, where the top of the border, which is convex, is a lot brighter than the inside of the border, which is concave.
 
+# Part 2
+The goal of using the threshold is to filter out values that are not worth considering. By experimenting with different thresholds I noticed that darkThreshold = 0.36 seems to produce the best results. To calculate correct normals, at least three different images are needed. If an area of the image is in the shadow in only one of the three images, we have not enough information to calculate the correct normals. Thus these areas were ignored, by chosing an appropriate threshold (0.36).
 
 # Part 3
+In this part, a darkThreshold of 0.3 seems to result in the most accurate normals.
 The results of the photometric stereo are obviously different when the direct illumination images are used instead of the normal images, because they are different images and thus also have different normals.
+But by using the direct images, the result is a lot better, because we basically have a distruption-free image and thus can very accurately calculate the normals.

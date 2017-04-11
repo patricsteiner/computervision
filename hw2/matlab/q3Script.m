@@ -1,4 +1,4 @@
-darkThreshold = .25;
+darkThreshold = .3;
 
 load('../data/q3/lights.mat'); % load lv1, lv2, lv3
 
@@ -57,14 +57,14 @@ title('Normals from direct image');
 %  step = 10;
 %  X = 1:step:size(img1,2);
 %  Y = 1:step:size(img1,1);
-%  U = reshape(normalsGlobal(1,:), size(img1));
-%  V = reshape(normalsGlobal(2,:), size(img1));
+%  U = reshape(normalsDirect(1,:), size(img1));
+%  V = reshape(normalsDirect(2,:), size(img1));
 %  U = U(1:step:end, 1:step:end);
 %  V = V(1:step:end, 1:step:end);
 %  
 %  figure(1);
 %  hold off;
-%  imshow(globalImg1);
+%  imshow(directImg1);
 %  hold on;
 %  quiver(X,Y,U,V);
 %  title('Computed Surface Normals');

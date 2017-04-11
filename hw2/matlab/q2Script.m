@@ -1,5 +1,5 @@
 circleThreshold = .5;
-darkThreshold   = .25;
+darkThreshold   = .36;
 
 %path to sphere and object images
 datapath = '../data/q2';

@@ -14,7 +14,7 @@ albedo = zeros(width, height);
 for y = 1:height
     for x = 1:width
         % only consider values above threshold
-        if (img1(x, y) >= threshold && img2(x, y) >= threshold && img2(x, y) >= threshold)
+        if (img1(x, y) >= threshold && img2(x, y) >= threshold && img3(x, y) >= threshold)
             intensities = [img1(x, y); img2(x, y); img3(x, y)];
             n = lightSources \ intensities; % Inverse of lightSources * intensities
             albedo(x, y) = norm(n);
