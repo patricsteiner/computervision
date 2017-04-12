@@ -1,4 +1,4 @@
-darkThreshold = .3;
+darkThreshold = .1;
 
 load('../data/q3/lights.mat'); % load lv1, lv2, lv3
 
@@ -24,16 +24,13 @@ img3 = double(imread('../data/q3/light03.png'))/255;
 
 [width, height] = size(img1);
 
-normalsImg = reshape(normals, width, height, 3);
-normalsDirectImg = reshape(normalsDirect, width, height, 3);
+normalsImg = reshape(normals', [[width, height], 3]);
+normalsDirectImg = reshape(normalsDirect', [[width, height], 3]);
 % normalsGlobalImg = reshape(normalsGlobal, width, height, 3);
 
 [Ni, Z, Xi] = integrability2(normalsImg);
 [Ni, Z2, Xi] = integrability2(normalsDirectImg);
 % [Ni, Z3, Xi] = integrability2(normalsGlobalImg);
-
-% i think something is wrong with my reshaping or integrating :( the 3D
-% surface looks weird... but where is the error?!?
 
 % display from here
 figure(1);
