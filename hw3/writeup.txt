@@ -1,0 +1,23 @@
+# Programming
+## Part 1
+computeH initializes a 2Nx9 matrix A and then simply iterates through all correspondance points and adds rows like described in d) to the matrix.
+Then the eigenvector of A^*A is calculated and the smallest eigenvalues is returned as result H.
+
+computeHnorm: Before calling computeH, this function iterates through all points and normalizes them by simply dividing each point by its length.
+
+## Part 2
+To calculate the homography, some correspondance points are needed. These are calculated using the Matlab computer vision toolbox.
+After that, the homography can be calculated using computeH.
+To avoid having holes in the warped image, the function iterates through every pixel in the warped image and reverse-calculates the corresponding pixel in the input image.
+
+Unfortunately I could not complete this task because my computeH function seems to produce wrong results and thus I end up with a (almost) black image.
+
+## Part 3
+I chose the following points of the image to calculate H:
+
+p1 = [[86; 69], [228; 76], [114; 332], [259; 323]];
+p2 = [[100;50], [250; 50], [100; 300], [250; 300]];
+
+p2 are just an estimation, that will approximately make the phone to a rectangular shape.
+
+Once again I unfortunately could not produce a satisfying result, because my computeH (and thus warpImage) does not work properly.

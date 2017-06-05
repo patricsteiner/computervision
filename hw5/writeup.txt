@@ -1,0 +1,32 @@
+# Computer Vision HW5
+
+## Question 1
+
+Equation (2) and (3) are both a summation, so we can basically ignore this part and just differentiate the rest.
+
+As the tip suggest, only using this one training set {x^1, y^1}:
+
+J(Theta) = -(y * log(htheta(x)) + (1 - y) * log(1 - htheta(x)))
+
+--> differentiate:
+
+d*htheta(x)/d*x = htheta'(x) = (-(1+exp(-theta*x)))^-2 * (-theta*e^-theta^T*x)
+
+d*J(theta)/d*theta = J'(theta) = -y(htheta(x))^-1 * htheta'(x) + (1-y)*(1 - htheta(x))^-1 * -htheta'(x)
+
+
+
+## Question 2
+Once again only using the training example {x^1, y^1}.
+
+J(theta) = - 1{y = k} * log(exp(theta^T*x)/exp(theta^T*x))
+
+d*J(theta)/d*theta = J'(theta) = - 1{y = k} * diff(log(exp(theta^T*x)/exp(thetaj^T*x)))
+
+
+## Question 3
+An MLP works in a simpler way than a CNN, each layer straight up processes all the output from the previous layer, so no reduction in size is done. This brings a disadnavtage that the total amount of input parameters will be extremely large and thus difficult or almost impossible to handle. A solution would be to reduce the size of the original input, but then again, the end result would be less accurate since information was lost.
+A CNN has convolution and pooling layers, so only features that are connected are processed at the same time at the beginning. The pooling layers reduce the size of the input for the respective next layer (dimension becomes smaller), then convolution layer processes newly connected features again and this is repeated. This brings less computation and thus faster results, which are two clear advantages over MLP.
+
+## Question 4
+Not sure how to calculate, but the image on the slide clearly shows 2 layers of size 2x2048 each, after the last pooling layer, that makes the result denser and results in a 4096 Vector in total.

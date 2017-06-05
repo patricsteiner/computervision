@@ -1,0 +1,20 @@
+# Question 1: Homography
+## a)
+Size is 3x3, becuase we need to add an additional row+column since homogenous coordinates are used.
+
+## b)
+The matrix has rank 3. The third row is always independet. The first and second row might be the same in special cases (eg. shear with matrix [1 1 0; 1 1 0; 0 0 1], which would not make much sense though) and in these cases the rank would be only 2.
+
+## c)
+The amount of unknowns and thus points required depends on the kind of transformation that was used. In the easiest case, there are only 2 unknowns, so we require 1 point correspondance at least (example: S = [1 0 a; 0 1 b; 0 0 1] --> only 1 point correspondence ([x; y; 1], [x'; y'; 1]) required to solve equations). However, there can be up to 8 unknowns in the homography matrix (we can set the last entry in the matrix (scaling factor) to 1) which means there are 4 point correspondances required.
+
+## d)
+We can set the right side (b) of the equation as 0 vector. Then A is the matrix that results in 0 vector when multiplied by the unknown vector h.
+
+The rows of matrix a look like this:
+[xi, yi, 1, 0, 0, 0, -xi'*xi, -xi'*yi, -xi']
+[0, 0, 0, xi, yi, 1, -yi'*xi, -yi'*yi, -yi']
+
+So we have A*h = 0.
+
+

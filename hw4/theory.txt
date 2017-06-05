@@ -1,0 +1,24 @@
+# Computer Vision HW4 Theory
+
+## Question 1: Calculating the Jacobian
+dW/dp = [dWx/dp; dWy/dp] = [dWx/dp1, dWx/dp2, dWx/dpn; dWy/dp1, dWy/dp2, dWy/dpn]
+
+## Question 2: Calculating the Gradient
+(assuming the matrices have an inverse, otherwise I don't know how to solve it)
+dp = H^-1 G^T [Iwarped-T]
+dp * [Iwarped-T]^-1 = H^-1 G^T
+H * dp * [Iwarped-T]^-1 = G^T
+G = (H * dp * [Iwarped-T]^-1)^T
+
+## Question 3: Computational complexity of initialization
+Gradient G is a matrix with m entries. Translating the matrix can be done in O(n) time. Multiplying the 2 matrixes can be done in O(n^3) time (a little bit less if a non-naive approach is used). So the computational complexity for H is approximately O(n^3 + n).
+To compute G, each pixel in G needs to be multiplied with a 3x3 Warp matrix, so O(3*3). However, some values of this calculation may be omitted (because of 1 and 0 entries, like for example the last coordinate in the vector is always 1 so no need to multiply), also depends on the amount of paremeters p. So O(2p). This has to be done for every Pixel, so m*O(2p) = O(2pm).
+
+## Question 4: The complexity of the whole iteration is the sum of:
+shifting: O(m)
+gradient: O(2pm)
+error image: O(m)
+hessian matrix: O(n^3 + n)
+solving linear system (so basically matrix multiplication again): O(n^3)
+
+Total: O(2m(1+p) + n + 2n^3)
